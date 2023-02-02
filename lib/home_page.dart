@@ -33,8 +33,8 @@ class _HomePageState extends State<HomePage> {
     '2',
     '3',
     '-',
-    '0',
     '.',
+    '0',
     '=',
     '+',
   ];
@@ -42,128 +42,140 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Calculator'),
-      ),
-      backgroundColor: Colors.white38,
-      body: Column(
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    userInput,
-                    style: const TextStyle(fontSize: 18, color: Colors.white),
+      backgroundColor: Colors.black54,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 64),
+        child: Column(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      userInput,
+                      style: const TextStyle(fontSize: 18, color: Colors.white),
+                    ),
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(15),
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    answer,
-                    style: const TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      answer,
+                      style: const TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const Divider(
-            indent: 2,
-            endIndent: 2,
-            thickness: 1,
-            color: Colors.white,
-          ),
-          Expanded(
-            flex: 3,
-            child: GridView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: buttons.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-              itemBuilder: (BuildContext context, int index) {
-                // Clear button
-                if(index == 0){
-                  return MyButton(
-                    buttontapped: (){
-                      setState(() {
-                        userInput = '';
-                        answer = '0';
-                      });
-                    },
-                    buttonText: buttons[index],
-                    color: colour,
-                    textColor: Colors.green[600],
-                  ) ;
-                }
-                // +/- button
-                else if(index == 1) {
-                  return MyButton(
-                    buttonText: buttons[index],
-                    color: colour,
-                    textColor: Colors.blueAccent,
-                  );
-                }
-                // % Button
-                else if(index == 2) {
-                  return MyButton(
-                    buttontapped: (){
-                      setState(() {
-                        userInput += buttons[index];
-                      });
-                    },
-                    buttonText: buttons[index],
-                    color: colour,
-                    textColor: Colors.blueAccent,
-                  );
-                }
-                //Delete button
-                else if(index == 3) {
-                  return MyButton(
-                    buttontapped: () {
-                      setState(() {
-                        userInput = userInput.substring(0, userInput.length - 1);
-                      });
-                    },
-                    buttonText: buttons[index],
-                    color: colour,
-                    textColor: Colors.red[600],
-                  );
-                }
-                // Equal_to Button
-                else if(index == 18){
-                  return MyButton(
-                    buttontapped: (){
-                      setState(() {
-                        equalPressed();
-                      });
-                    },
-                    buttonText: buttons[index],
-                    color: colour,
-                    textColor: Colors.orange[600],
-                  );
-                }
-                //other buttons
-                else{
-                  return MyButton(
-                    buttontapped: (){
-                      setState(() {
-                        userInput += buttons[index];
-                      });
-                    },
-                    buttonText: buttons[index],
-                    color: Colors.white,
-                    textColor: isOperator(buttons[index])
-                      ? Colors.blueAccent
-                      : Colors.black,
-                  );
-                }
-                },
+            const Divider(
+              indent: 8,
+              endIndent: 8,
+              thickness: 1,
+              color: Colors.white,
             ),
-          ),
-        ],
+            Expanded(
+              flex: 3,
+              child: GridView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: buttons.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+                itemBuilder: (BuildContext context, int index) {
+                  // Clear button
+                  if(index == 0){
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: MyButton(
+                        buttontapped: (){
+                          setState(() {
+                            userInput = '';
+                            answer = '0';
+                          });
+                        },
+                        buttonText: buttons[index],
+                        textColor: Colors.green[600],
+                      ),
+                    ) ;
+                  }
+                  // +/- button
+                  else if(index == 1) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: MyButton(
+                        buttonText: buttons[index],
+                        textColor: Colors.blueAccent,
+                      ),
+                    );
+                  }
+                  // % Button
+                  else if(index == 2) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: MyButton(
+                        buttontapped: (){
+                          setState(() {
+                            userInput += buttons[index];
+                          });
+                        },
+                        buttonText: buttons[index],
+                        textColor: Colors.blueAccent,
+                      ),
+                    );
+                  }
+                  //Delete button
+                  else if(index == 3) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: MyButton(
+                        buttontapped: () {
+                          setState(() {
+                            userInput = userInput.substring(0, userInput.length - 1);
+                          });
+                        },
+                        buttonText: buttons[index],
+                        textColor: Colors.red[600],
+                      ),
+                    );
+                  }
+                  // Equal_to Button
+                  else if(index == 18){
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: MyButton(
+                        buttontapped: (){
+                          setState(() {
+                            equalPressed();
+                          });
+                        },
+                        buttonText: buttons[index],
+                        textColor: Colors.orange[600],
+                      ),
+                    );
+                  }
+                  //other buttons
+                  else{
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: MyButton(
+                        buttontapped: (){
+                          setState(() {
+                            userInput += buttons[index];
+                          });
+                        },
+                        buttonText: buttons[index],
+                        textColor: isOperator(buttons[index])
+                          ? Colors.blueAccent
+                          : Colors.black,
+                      ),
+                    );
+                  }
+                  },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
