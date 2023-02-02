@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Color colour= Colors.white;
   var userInput = '';
   var answer = '';
 
@@ -70,9 +71,16 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          const Divider(
+            indent: 2,
+            endIndent: 2,
+            thickness: 1,
+            color: Colors.white,
+          ),
           Expanded(
             flex: 3,
             child: GridView.builder(
+              padding: const EdgeInsets.all(8),
               itemCount: buttons.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
               itemBuilder: (BuildContext context, int index) {
@@ -86,16 +94,16 @@ class _HomePageState extends State<HomePage> {
                       });
                     },
                     buttonText: buttons[index],
-                    color: Colors.blue[50],
-                    textColor: Colors.black,
+                    color: colour,
+                    textColor: Colors.green[600],
                   ) ;
                 }
                 // +/- button
                 else if(index == 1) {
                   return MyButton(
                     buttonText: buttons[index],
-                    color: Colors.blue[50],
-                    textColor: Colors.black,
+                    color: colour,
+                    textColor: Colors.blueAccent,
                   );
                 }
                 // % Button
@@ -107,8 +115,8 @@ class _HomePageState extends State<HomePage> {
                       });
                     },
                     buttonText: buttons[index],
-                    color: Colors.blue[50],
-                    textColor: Colors.black,
+                    color: colour,
+                    textColor: Colors.blueAccent,
                   );
                 }
                 //Delete button
@@ -120,8 +128,8 @@ class _HomePageState extends State<HomePage> {
                       });
                     },
                     buttonText: buttons[index],
-                    color: Colors.blue[50],
-                    textColor: Colors.black,
+                    color: colour,
+                    textColor: Colors.red[600],
                   );
                 }
                 // Equal_to Button
@@ -133,8 +141,8 @@ class _HomePageState extends State<HomePage> {
                       });
                     },
                     buttonText: buttons[index],
-                    color: Colors.orange[700],
-                    textColor: Colors.white,
+                    color: colour,
+                    textColor: Colors.orange[600],
                   );
                 }
                 //other buttons
@@ -146,11 +154,9 @@ class _HomePageState extends State<HomePage> {
                       });
                     },
                     buttonText: buttons[index],
-                    color: isOperator(buttons[index])
-                      ? Colors.blueAccent
-                      : Colors.white,
+                    color: Colors.white,
                     textColor: isOperator(buttons[index])
-                      ? Colors.white
+                      ? Colors.blueAccent
                       : Colors.black,
                   );
                 }
